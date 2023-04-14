@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Books</title>
+{% endblock %}
+
+{% block content %}
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <br>&nbsp;&nbsp;
+        <button type="submit" class="save btn btn-success">Save</button>
+    </form>
+{% endblock %}

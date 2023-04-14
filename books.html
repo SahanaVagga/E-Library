@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>All Books</title>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped" style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Edition</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+            <th>Serial Number</th>
+            <th>Price</th>
+            <th>Health</th>
+            <th>Availability</th>
+            <th>Current Status</th>
+            <th>Late Renewals</th>
+            <th>Fine Collected</th>
+        </tr>
+        {% if not books %}
+            <tr>No Books.</tr>
+        {% endif %}
+        {% for book in books %}
+            <tr>
+                <td>{{ book.book_name }}</td>
+                <td>{{ book.book_edition }}</td>
+                <td>{{ book.author_name }}</td>
+                <td>{{ book.published_year }}</td>
+                <td>{{ book.book_serial_number }}</td>
+                <td>{{ book.book_price }}</td>
+                <td>{{ book.book_health }}</td>
+                <td>{{ book.book_availability }}</td>
+                <td><a href="{% url 'BooksnBorrowers:availability' book.book_serial_number %}">Refresh</a>
+                </td>
+                <td>{{ book.book_late_renewal_count }}</td>
+                <td>{{ book.book_total_fine_collected }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </a>
+{% endblock %}

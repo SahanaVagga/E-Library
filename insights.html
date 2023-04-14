@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Insights</title>
+{% endblock %}
+
+{% block content %}
+    <P>Preparing Insights..</P>
+    <a href="{% url 'BooksnBorrowers:csv_books' %}">
+        <button class="btn"><i class="fa fa-home"></i>Download All Books as .csv</button>
+    </a>
+    <a href="{% url 'BooksnBorrowers:csv_borrowed_books' %}">
+        <button class="btn"><i class="fa fa-home"></i>Download Borrowed Books as .csv</button>
+    </a>
+    <a href="{% url 'BooksnBorrowers:csv_student_borrowers' %}">
+        <button class="btn"><i class="fa fa-home"></i>Download Student Borrowers as .csv</button>
+    </a>
+    <a href="{% url 'BooksnBorrowers:csv_staff_borrowers' %}">
+        <button class="btn"><i class="fa fa-home"></i>Download Staff Borrowers as .csv</button>
+    </a>
+    <br><br>
+    <a href="{% url 'BooksnBorrowers:concat' %}">
+        <button class="btn"><i class="fa fa-home"></i>Concat All</button>
+    </a>
+{% endblock %}

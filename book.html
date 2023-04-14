@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Books</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <table class="table table-striped" style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Edition</th>
+                <th>Author</th>
+                <th>Serial Number</th>
+                <th>Price</th>
+                <th>Published Year</th>
+                <th>Health</th>
+            </tr>
+            <tr>
+                <td>{{ book.book_name }}</td>
+            <td>{{ book.book_edition }}</td>
+            <td>{{ book.author_name }}</td>
+            <td>{{ book.book_serial_number }}</td>
+            <td>{{ book.book_price }}</td>
+            <td>{{ book.published_year }}</td>
+            <td>{{ book.book_health }}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="{% static 'css/buttons.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'welcome' %}"><img src="{% static 'images/elibrary.png' %}"
+                                                                alt="MyBooks-logo" width="135" height="46"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Borrowers
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:student_borrowers' %}">
+                            <button type="button" class="btn btn-warning">Student</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:staffborrowers' %}">
+                            <button type="button" class="btn btn-warning">Staff</button>
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Books
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:show books' %}">
+                            <button type="button" class="btn btn-warning">Inventory</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:student borrowed books' %}">
+                            <button type="button" class="btn btn-warning">Student Borrowed</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:staff borrowed books' %}">
+                            <button type="button" class="btn btn-warning">Staff Borrowed</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:displayclaimedbooks' %}">
+                            <button type="button" class="btn btn-warning">Claimed</button>
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Add Items
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:addbook' %}">
+                            <button type="button" class="btn btn-warning">Add Book</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:addstudentborrower' %}">
+                            <button type="button" class="btn btn-warning">Add Student Borrower</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:addstaffborrower' %}">
+                            <button type="button" class="btn btn-warning">Add Staff Borrower</button>
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Issue Book
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:giveawaybookstudent' %}">
+                            <button type="button" class="btn btn-warning">Student</button>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'BooksnBorrowers:giveawaybookstaff' %}">
+                            <button type="button" class="btn btn-warning">Staff</button>
+                        </a></li>
+                    </ul>
+                </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h1>Librarain View</h1>
+            </ul>
+        </div>
+        <a class="btn btn-primary" role="button" href='http://127.0.0.1:8000/admin/login/?next=/admin/'>Admin</a>&nbsp;
+        <a class="btn btn-danger" role="button" href='{% url 'logout' %}'>Logout</a>
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>

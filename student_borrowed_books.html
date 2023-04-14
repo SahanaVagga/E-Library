@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Books</title>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped" style="width:100%">
+        <tr>
+            <th>Book Name</th>
+            <th>Borrower Name</th>
+            <th>Borrowed on</th>
+            <th>Renewal Date</th>
+            <th>Notify</th>
+            <th>Action</th>
+        </tr>
+        {% if not books %}
+            <tr>No Books.</tr>
+        {% endif %}
+        {% for book in books %}
+            <tr>
+                <td><a href="{% url 'BooksnBorrowers:book info' book.id %}">{{ book.Borrower_issued_book }}</a></td>
+                <td>{{ book.Borrower }}</td>
+                <td>{{ book.Borrower_book_issued_on }}</td>
+                <td>{{ book.Borrower_renewal_date }}</td>
+                <td><a href="{% url 'BooksnBorrowers:notifystudent' book.Borrower %}">Send Return Alert</a></td>
+                <td><a href="{% url 'BooksnBorrowers:acceptstudentbook' book.id %}">Fare Accept</a>&nbsp;<a
+                        href="{% url 'BooksnBorrowers:finenacceptstudent' book.id %}">Fine & Accept</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

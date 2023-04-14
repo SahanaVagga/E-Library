@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Books</title>
+{% endblock %}
+
+{% block content %}
+    <p>Preview Details : </h6>
+    </p>
+    <form action="{% url 'BooksnBorrowers:email_trigger' borrower_details.Email_id %}" method="post">
+        {% csrf_token %}
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Borrower Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                   placeholder="{{ borrower_details.Firstname }} {{ borrower_details.Lastname }}">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Email id</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                   placeholder="{{ borrower_details.Email_id }}">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Borrower Mobile</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                   placeholder="{{ borrower_details.Mobile }}">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Admin Message</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                   value="Delay in Returning Book/s issued, To avoid more fines, contact Librarian immediately.">
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Trigger Message">
+        <a class="btn btn-primary" role="button" href="{% url 'BooksnBorrowers:staff borrowed books' %}">Cancel</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Claimed Books</title>
+{% endblock %}
+
+{% block content %}
+    <h2>Claimed Books</h2>
+    <table class="table table-striped" style="width:100%">
+        <tr>
+            <th>Book Name</th>
+            <th>Book Edition</th>
+            <th>Book Author</th>
+            <th>Notify Admin</th>
+        </tr>
+        {% if not books %}
+            <tr>No Books.</tr>
+        {% endif %}
+        {% for book in books %}
+            <tr>
+                <td>{{ book.Name }}</td>
+                <td>{{ book.Edition }}</td>
+                <td>{{ book.Author }}</td>
+                <td><a href="{% url 'BooksnBorrowers:notifyadmin' book.Name book.Edition book.Author %}">Notify</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    </a>
+{% endblock %}
